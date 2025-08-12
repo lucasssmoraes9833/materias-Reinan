@@ -1,0 +1,36 @@
+#include <stdbool.h>
+#include <stdio.h>
+
+// Função para verificar se um número é primo
+bool is_prime(int num) {
+  if (num <= 1)
+    return false; // Descarta o 0, 1 e negativos
+  for (int i = 2; i * i <= num; i++) {
+    if (num % i == 0) {
+      return false; // verifica se o número tem apenas 1 e ele mesmo como
+                    // divisores, se sim, é primo, e no caso de ter mais
+                    // divisores fora esses, não é primo
+    }
+  }
+  return true;
+}
+
+int main() {
+  int n, count = 0, num = 2; // Inicializa o contador, começando pelo 2, que é o
+                             // primeiro número primo
+
+  // Pede para o usuário digitar o número de primos que vai ter a sequência
+  printf("Quantos números primos você quer ver? ");
+  scanf("%d", &n);
+
+  // Loop para encontrar os primeiros 'n' números primos
+  while (count < n) {
+    if (is_prime(num)) {
+      printf("%d ", num); // Se for primo, mostra na sequencia
+      count++;            // Incrementa o contador de primos encontrados
+    }
+    num++; // Verifica o próximo número
+  }
+
+  return 0;
+}
